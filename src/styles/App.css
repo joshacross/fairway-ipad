@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #0C9748;
+  --primary-dark-color: #006848;
+  --secondary-color: #EFEDE8;
+  --secondary-dark-color: #efede8d1;
+  --tertiary-color: #82C341;
+  --dark-teal-color: #074F5B;
+  --dark-grey-color: #3F4444
+  --black-color: #000000;
+  --white-color: #fff;
+  --shadow-color: #00000033;
+  --font-montserrat: font-family: 'Montserrat', sans-serif;
+  --font-pt-sans: font-family: 'PT Sans', sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  text-align: center;
+  background-image: url("https://img1.wsimg.com/isteam/ip/257ce0ed-a129-4f8b-8459-b36d55e562e4/Jackson%20Townhomes%20Painting%20-%20Light%20-%20R2-0002.jpg");
+  background-color: var(--white-color);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-y:top;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+
+body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+  /* margin-bottom: 3rem; */
+  background-color: var(--primary-color);
+  padding: 1rem;
+  color: var(--secondary-color);
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3.125rem;
+}
+
+.pageTitle {
+  text-align: center;
+  margin: 3rem;
+}
+
+h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0;
+  font-weight:normal;
+}
+
+h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+p {
+  font-size: 0.6rem;
+  margin: 0;
+}
+
+.buttons {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10rem;
+}
+
+button {
+  width: 10rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: var(--dark-grey-color);
+  box-shadow: 5px 5px 5px 3px var(--shadow-color);
+}
+
+button:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+footer {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  align-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: left;
+}
+
+footer h4 {
+font-size: 1.25rem;
+}
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.title {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 0.7rem;
+}
+
+footer p {
+  font-size: 0.6rem;
+}
+
+footer img {
+  width: 9.375rem;
+}
+
+.modalContainer {
+  border-radius: 10px;
+  background: var(--primary-dark-color);
+  color: var(--secondary-color);
+  z-index: 1;
+  width: 50vw;
+  height: 50vh;
+}
+
+.center {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+
+.fade-in-image {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  -moz-animation: fadeIn 0.5s;
+  -o-animation: fadeIn 0.5s;
+  -ms-animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

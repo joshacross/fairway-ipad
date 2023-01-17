@@ -148,15 +148,6 @@ footer img {
   width: 9.375rem;
 }
 
-.modalContainer {
-  border-radius: 10px;
-  background: var(--primary-dark-color);
-  color: var(--secondary-color);
-  z-index: 1;
-  width: 50vw;
-  height: 50vh;
-}
-
 .PhoneInputCountryIconImg {
   display: none;
 }

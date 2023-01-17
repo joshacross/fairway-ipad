@@ -25,8 +25,8 @@ import {
 } from "@mui/material";
 
 const initialValues = {
-  name: null,
-  email: null,
+  name: "",
+  email: "",
   phoneNumber: "",
 };
 

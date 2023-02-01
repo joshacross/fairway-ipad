@@ -7,72 +7,16 @@ import kcgHomesLogo from "./assets/logos/kcgHomesLogo.png";
 import jamesHarperProfile from "./assets/photos/jamesHarperProfile.png";
 import deeAnnProfile from "./assets/photos/deeAnnProfile.png";
 import beccaProfile from "./assets/photos/beccaProfile.png";
-import jacksonOnMain from "./assets/photos/jacksonVillageTownhomes.png";
 import qrcode from "./assets/photos/james_qrcode.png";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import PhoneNumberInput, { isValidPhoneNumber } from "react-phone-number-input";
-import PhoneInput from "./components/common/PhoneInput";
-import {
-  Button,
-  Box,
-  Typography,
-  Modal,
-  TextField,
-  Checkbox,
-  InputLabel,
-  FormControlLabel,
-} from "@mui/material";
-import { MuiTelInput } from "mui-tel-input";
-
-const initialValues = {
-  name: "",
-  email: "",
-  phoneNumber: "",
-  isTexting: false,
-};
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Required").typeError("Required"),
-  email: Yup.string().required("Required").typeError("Required"),
-  phoneNumber: Yup.string()
-    .test("test phone", "Please enter a valid phone number", (value) =>
-      isValidPhoneNumber(value)
-    )
-    .required(),
-});
-
-const classes = {
-  button: {
-    backgroundColor: "#006848",
-    width: "10rem",
-    height: "5rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "white",
-    textDecoration: "none",
-    letterSpacing: "0.25rem",
-    fontSize: "1rem",
-    borderRadius: "5px",
-    boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-  },
-};
-
-// const buttonStyles = {
-//   "& MuiBackdrop-root:hover": {
-//     backgroundColor: "green !important",
-//   },
-//   backgroundColor: "white",
-//   color: "black",
-// };
+import Iframe from "react-iframe";
+import { Button, Box, Typography, Modal } from "@mui/material";
 
 const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  width: "80vw",
   bgcolor: "secondary.main",
   border: "2px solid #000",
   borderRadius: "10px",
@@ -89,27 +33,10 @@ const pageStyles = {
   },
 };
 
-const flagDisplay = {
-  display: {
-    "& .PhoneInputCountry": {
-      display: "none",
-    },
-  },
-};
-
 export default function App() {
   const [open, setOpen] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const handleClose = () => setOpen(false);
-  const handleSubmit = (values) => {
-    handleClose();
-    console.log("Submitted Values", values);
-  };
-
-  // const handleClick = () => {
-  //   setOpen(!open);
-  //   console.log("submit button clicked");
-  // };
 
   return (
     <>
@@ -147,6 +74,7 @@ export default function App() {
                   setSignIn(true);
                   setOpen(!open);
                 }}
+                // href="https://property.fairwaymc.com/home-loan-lead-form/apply-21905432"
                 variant="contained"
                 color="darkPrimary"
               >
@@ -239,128 +167,34 @@ export default function App() {
             >
               <Box sx={modalStyle}>
                 {signIn ? (
-                  <>
-                    <Box p={2}>
-                      <div className="flex flex-col items-center mb-10">
-                        <img
-                          className="w-60"
-                          src={jacksonOnMain}
-                          alt="jackson on main logo"
-                        />
-                      </div>
-                      <Formik
-                        validateOnBlur={false}
-                        validateOnChange={false}
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={handleSubmit}
-                      >
-                        {({
-                          values,
-                          errors,
-                          setFieldValue,
-                          setFieldError,
-                          handleSubmit,
-                          isValid,
-                        }) => {
-                          console.log("values", values);
-                          console.log("errors", errors);
-                          return (
-                            <>
-                              <form
-                                onSubmit={handleSubmit}
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  justifyContent: "center",
-                                  gap: "10px",
-                                }}
-                              >
-                                <div className="flex justify-between gap-3">
-                                  <div className="w-full">
-                                    <InputLabel>Name</InputLabel>
-                                    <TextField
-                                      id="name"
-                                      fullWidth
-                                      placeholder="Jane Smith"
-                                      variant="standard"
-                                      value={values.name}
-                                      onChange={(e) => {
-                                        setFieldValue("name", e.target.value);
-                                        setFieldError("name", undefined);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="w-full">
-                                    <InputLabel>Email</InputLabel>
-                                    <TextField
-                                      id="email"
-                                      fullWidth
-                                      variant="standard"
-                                      placeholder="janesmith@gmail.com"
-                                      value={values.email}
-                                      error={Boolean(errors.email)}
-                                      onChange={(e) => {
-                                        setFieldValue("email", e.target.value);
-                                        setFieldError("email", undefined);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                                <div>
-                                  <InputLabel>Phone Number</InputLabel>
-                                  <MuiTelInput
-                                    variant="standard"
-                                    fullWidth
-                                    error={Boolean(errors.phoneNumber)}
-                                    defaultCountry="US"
-                                    className={pageStyles.phoneInput}
-                                    value={values.phoneNumber}
-                                    onChange={(value) => {
-                                      setFieldValue("phoneNumber", value);
-                                      setFieldError("phoneNumber", undefined);
-                                    }}
-                                  />
-                                </div>
-                                <FormControlLabel
-                                  label="Ok to Text?"
-                                  control={
-                                    <Checkbox
-                                      onChange={(isTexting) => {
-                                        setFieldValue(
-                                          "isTexting",
-                                          Boolean(isTexting.target.value)
-                                        );
-                                      }}
-                                    />
-                                  }
-                                />
-                                <div className="flex justify-end">
-                                  <Button
-                                    disabled={!isValid}
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    size="small"
-                                  >
-                                    Sign In
-                                  </Button>
-                                </div>
-                              </form>
-                            </>
-                          );
-                        }}
-                      </Formik>
-                    </Box>
-                  </>
+                  <Iframe
+                    url="https://property.fairwaymc.com/home-loan-lead-form/apply-21905432"
+                    width="100%"
+                    height="650vh"
+                    id=""
+                    className=""
+                    display="block"
+                    position="relative"
+                  />
                 ) : (
-                  <>
-                    <Typography>Apply</Typography>
-                    <img
-                      src={qrcode}
-                      alt="QR Code - James Harper - Fairway Apply Now Quick Link"
-                    />
-                  </>
+                  <div className="flex justify-between items-center">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <Typography variant="h5">Scan QR Code</Typography>
+                      <img
+                        src={qrcode}
+                        alt="QR Code - James Harper - Fairway Apply Now Quick Link"
+                      />
+                    </div>
+                    <div className="flex flex-col items-center justify-center border-l-2 border-primary h-96 w-full">
+                      <Button
+                        size="large"
+                        variant="contained"
+                        href="https://apply.fairwaymc.com/#/milestones?referrerId=james.harper%40fairwaymc.com"
+                      >
+                        Apply Now
+                      </Button>
+                    </div>
+                  </div>
                 )}
               </Box>
             </Modal>

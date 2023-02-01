@@ -36,6 +36,7 @@ const pageStyles = {
 export default function App() {
   const [open, setOpen] = useState(false);
   const [signIn, setSignIn] = useState(false);
+  const [apply, setApply] = useState(false);
   const handleClose = () => setOpen(false);
 
   return (
@@ -71,6 +72,7 @@ export default function App() {
               <Button
                 size="large"
                 onClick={() => {
+                  setApply(false);
                   setSignIn(true);
                   setOpen(!open);
                 }}
@@ -85,6 +87,7 @@ export default function App() {
                 // eslint-disable-next-line
                 onClick={() => {
                   setSignIn(false);
+                  setApply(true);
                   setOpen(!open);
                 }}
                 variant="contained"
@@ -166,7 +169,7 @@ export default function App() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={modalStyle}>
-                {signIn ? (
+                {signIn && (
                   <Iframe
                     url="https://property.fairwaymc.com/home-loan-lead-form/apply-21905432"
                     width="100%"
@@ -176,7 +179,8 @@ export default function App() {
                     display="block"
                     position="relative"
                   />
-                ) : (
+                )}
+                {apply && (
                   <div className="flex justify-between items-center">
                     <div className="flex flex-col items-center justify-center w-full">
                       <Typography variant="h5">Scan QR Code</Typography>

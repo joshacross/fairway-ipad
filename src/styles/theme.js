@@ -31,7 +31,7 @@ const theme = createTheme({
     grey40: { main: "#BEBEBE" },
     grey60: { main: "#9D9D9D" },
     grey80: { main: "#787878" },
-    grey100: { main: "#515151" },
+    grey100: { main: "#3F4444" },
     green: { main: tertiaryColor },
     blue: { main: primaryColor },
     darkBlue: { main: primaryDarkColor },
@@ -67,6 +67,7 @@ const theme = createTheme({
           "&&:hover": {
             borderColor: brown,
           },
+          padding: ".5rem",
         },
         underline: {
           "&:before": {
@@ -81,7 +82,7 @@ const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: primaryColor,
+          color: brown,
           fontSize: "1.125rem",
           marginBottom: "0.5rem",
         },
@@ -111,17 +112,23 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-          boxShadow: "none",
+          // boxShadow: "none",
         },
         contained: {
-          color: white,
+          fontWeight: "bold",
         },
         containedSizeSmall: {
           fontSize: "16px",
           fontWeight: "500",
           padding: "13.5px 53px 13.5px 53px",
-          fontFamily: "Wigrum",
-          textTransform: "capitalize",
+          fontFamily: "PT Sans, sans-serif",
+        },
+        containedSizeLarge: {
+          fontSize: "25px",
+          borderRadius: "20px",
+          padding: "20px 40px",
+          color: "green",
+          backgroundColor: "white",
         },
       },
     },

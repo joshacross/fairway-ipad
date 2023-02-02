@@ -9,7 +9,8 @@ import deeAnnProfile from "./assets/photos/deeAnnProfile.png";
 import beccaProfile from "./assets/photos/beccaProfile.png";
 import blendModal from "./assets/photos/blendModalButton.png";
 import Iframe from "react-iframe";
-import { Button, Box, Typography, Modal } from "@mui/material";
+import { Button, Box, Modal, AppBar, Toolbar, IconButton } from "@mui/material";
+import useDevice from "./utils/hooks/useDevice";
 
 const modalStyle = {
   position: "absolute",
@@ -25,7 +26,7 @@ const modalStyle = {
 };
 
 const pageStyles = {
-  contactCard: "flex items-center gap-3 max-w-sm my-6",
+  contactCard: "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3",
   phoneInput: {
     ".MuiTelInput-Menu": {
       display: "none",
@@ -34,6 +35,8 @@ const pageStyles = {
 };
 
 export default function App() {
+  const { isMobile } = useDevice();
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [apply, setApply] = useState(false);
@@ -42,35 +45,49 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <main
-          className={`flex flex-col justify-between m-auto text-center bg-home-page bg-no-repeat bg-top bg-cover h-screen`}
-        >
-          <nav className="flex bg-primary flex-wrap items-center justify-center gap-40 p-1 text-white">
-            <img
-              width="300rem"
-              src={fairwayLogo}
-              alt="fairway independent mortgage corporation"
-            />
-            <img width="200rem" src={parksLogo} alt="parks corporate logo" />
-            <img
-              width="133.33rem"
-              src={kcgHomesLogo}
-              alt="parks corporate logo"
-            />
-          </nav>
+        <main className="flex flex-col justify-between m-auto text-center bg-home-page bg-no-repeat bg-top bg-cover h-screen">
+          {isMobile ? (
+            <AppBar position="static" className="mb-6">
+              <Toolbar className="flex justify-between">
+                <IconButton edge="start" color="secondary">
+                  =
+                </IconButton>
+                <img
+                  width="50%"
+                  src={fairwayLogo}
+                  alt="fairway independent mortgage corporation"
+                />
+              </Toolbar>
+            </AppBar>
+          ) : (
+            <nav className="flex bg-primary items-center justify-center gap-28 py-1 px-40 mb-6">
+              <div>
+                <img
+                  src={fairwayLogo}
+                  alt="fairway independent mortgage corporation"
+                />
+              </div>
+              <div>
+                <img src={parksLogo} alt="parks corporate logo" />
+              </div>
+              <div>
+                <img src={kcgHomesLogo} alt="parks corporate logo" />
+              </div>
+            </nav>
+          )}
           {/* Body */}
           <div className="flex flex-col items-center justify-between gap-20">
-            <div className="text-center mb-12">
-              <h1 className="font-sans text-6xl font-bold">
+            <div className="text-center mb-12 px-10">
+              <h1 className="font-sans text-xl md:text-6xl font-bold">
                 Jackson Village Townhomes
               </h1>
-              <h2 className="font-sans text-3xl font-bold">
+              <h2 className="font-sans text-lg md:text-3xl md:font-bold">
                 Hendersonvilles Brand New Townhome Community
               </h2>
             </div>
-            <div className="flex justify-center items-center gap-40">
+            <div className="flex justify-center items-center gap-10 md:gap-40">
               <Button
-                size="large"
+                size={isMobile ? "" : "large"}
                 onClick={() => {
                   setApply(false);
                   setSignIn(true);
@@ -83,7 +100,7 @@ export default function App() {
                 sign in
               </Button>
               <Button
-                size="large"
+                size={isMobile ? "" : "large"}
                 // eslint-disable-next-line
                 onClick={() => {
                   setSignIn(false);
@@ -98,68 +115,76 @@ export default function App() {
               </Button>
             </div>
           </div>
-          <footer className="px-6 py-0 flex justify-center gap-4 content-center items-center bg-primary text-white text-left">
-            <div className={pageStyles.contactCard}>
-              <img
-                className="w-40"
-                src={jamesHarperProfile}
-                alt="james harper profile"
-              />
-              <div>
-                <h4 className="text-base font-bold">James Harper</h4>
-                <h6 className="font-bold italic text-xs">
-                  Branch Manager | NMLS 71317
-                </h6>
-                <div className="text-xs">
-                  <p>Fairway Mortgage Corp.</p>
-                  <p>C: 615.991.1234</p>
-                  <p>O:615.822.6220</p>
-                  <p style={{ marginBottom: "0.5rem" }}>
-                    james.harper@fairwaymc.com
-                  </p>
+          <footer className="px-10 flex justify-center items-center bg-primary text-white text-left">
+            {!isMobile ? (
+              <>
+                <div className={pageStyles.contactCard}>
+                  <div className="w-full">
+                    <img src={jamesHarperProfile} alt="james harper profile" />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold">James Harper</h4>
+                    <h6 className="font-bold italic text-xs">
+                      Branch Manager | NMLS 71317
+                    </h6>
+                    <div className="text-xs">
+                      <p>Fairway Mortgage Corp.</p>
+                      <p>C: 615.991.1234</p>
+                      <p>O:615.822.6220</p>
+                      <p style={{ marginBottom: "0.5rem" }}>
+                        james.harper@fairwaymc.com
+                      </p>
+                    </div>
+                    <img
+                      width="100%"
+                      src={fairwayLogo}
+                      alt="james harper profile "
+                    />
+                  </div>
                 </div>
-                <img
-                  className="w-40"
-                  src={fairwayLogo}
-                  alt="james harper profile "
-                />
-              </div>
-            </div>
-            <div className={pageStyles.contactCard}>
-              <img
-                className="w-40"
-                src={deeAnnProfile}
-                alt="dee anne profile "
-              />
-              <div>
-                <h4 className="text-base font-bold">Dee Ann Couche</h4>
-                <h6 className="text-xs font-bold italic">
-                  {"REALTOR® | MLS 332841"}
-                </h6>
-                <div className="text-xs">
-                  <p>Parks Realty | Lakeside</p>
-                  <p>office: 615.824.5920 | cell: cell: 615.498.0897</p>
-                  <p>beccadeeann@parksathome.com</p>
+                <div className={pageStyles.contactCard}>
+                  <div className="w-full">
+                    <img src={deeAnnProfile} alt="dee anne profile " />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold">Dee Ann Couche</h4>
+                    <h6 className="text-xs font-bold italic">
+                      {"REALTOR® | MLS 332841"}
+                    </h6>
+                    <div className="text-xs">
+                      <p>Parks Realty | Lakeside</p>
+                      <p>office: 615.824.5920 | cell: cell: 615.498.0897</p>
+                      <p>beccadeeann@parksathome.com</p>
+                    </div>
+                    <img width="75%" src={parksLogo} alt="parks logo" />
+                  </div>
                 </div>
-                <img className="w-40" src={parksLogo} alt="parks logo" />
-              </div>
-            </div>
-            <div className={pageStyles.contactCard}>
-              <img className="w-40" src={beccaProfile} alt="becca profile " />
-              <div className="contactInfo">
-                <h4 className="text-base font-bold">Becca Pendergrast</h4>
-                <h6 className="text-xs font-bold italic">
-                  BROKER | MLS 285951
-                </h6>
-                <div className="text-xs">
-                  <p>Parks Realty | Lakeside</p>
-                  <p>M: 615.973.9291</p>
-                  <p>O: 615.824.5920</p>
-                  <p>beccadeeann@parksathome.com</p>
+                <div className={pageStyles.contactCard}>
+                  <div className="w-full">
+                    <img src={beccaProfile} alt="becca profile " />
+                  </div>
+                  <div className="contactInfo">
+                    <h4 className="text-base font-bold">Becca Pendergrast</h4>
+                    <h6 className="text-xs font-bold italic">
+                      BROKER | MLS 285951
+                    </h6>
+                    <div className="text-xs">
+                      <p>Parks Realty | Lakeside</p>
+                      <p>M: 615.973.9291</p>
+                      <p>O: 615.824.5920</p>
+                      <p>beccadeeann@parksathome.com</p>
+                    </div>
+                    <img width="75%" src={parksLogo} alt="parks logo" />
+                  </div>
                 </div>
-                <img className="w-40" src={parksLogo} alt="parks logo" />
-              </div>
-            </div>
+              </>
+            ) : (
+              <p className="text-xs">
+                {
+                  "© 2023 The Harper Team - Fairway Independent Mortgage Corporation. All Rights Reserved."
+                }
+              </p>
+            )}
           </footer>
           {open ? (
             <Modal

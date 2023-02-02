@@ -7,7 +7,7 @@ import kcgHomesLogo from "./assets/logos/kcgHomesLogo.png";
 import jamesHarperProfile from "./assets/photos/jamesHarperProfile.png";
 import deeAnnProfile from "./assets/photos/deeAnnProfile.png";
 import beccaProfile from "./assets/photos/beccaProfile.png";
-import qrcode from "./assets/photos/james_qrcode.png";
+import blendModal from "./assets/photos/blendModalButton.png";
 import Iframe from "react-iframe";
 import { Button, Box, Typography, Modal } from "@mui/material";
 
@@ -47,7 +47,7 @@ export default function App() {
         >
           <nav className="flex bg-primary flex-wrap items-center justify-center gap-40 p-1 text-white">
             <img
-              width="200rem"
+              width="300rem"
               src={fairwayLogo}
               alt="fairway independent mortgage corporation"
             />
@@ -170,34 +170,21 @@ export default function App() {
             >
               <Box sx={modalStyle}>
                 {signIn && (
-                  <Iframe
-                    url="https://property.fairwaymc.com/home-loan-lead-form/apply-21905432"
-                    width="100%"
-                    height="650vh"
-                    id=""
-                    className=""
-                    display="block"
-                    position="relative"
-                  />
+                  <div className="h-[90vh]">
+                    <Iframe
+                      url="https://property.fairwaymc.com/home-loan-lead-form/apply-21905432"
+                      width="100%"
+                      height="100%"
+                      display="block"
+                      position="relative"
+                    />
+                  </div>
                 )}
                 {apply && (
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col items-center justify-center w-full">
-                      <Typography variant="h5">Scan QR Code</Typography>
-                      <img
-                        src={qrcode}
-                        alt="QR Code - James Harper - Fairway Apply Now Quick Link"
-                      />
-                    </div>
-                    <div className="flex flex-col items-center justify-center border-l-2 border-primary h-96 w-full">
-                      <Button
-                        size="large"
-                        variant="contained"
-                        href="https://apply.fairwaymc.com/#/milestones?referrerId=james.harper%40fairwaymc.com"
-                      >
-                        Apply Now
-                      </Button>
-                    </div>
+                  <div>
+                    <a href="https://apply.fairwaymc.com/#/milestones?referrerId=james.harper%40fairwaymc.com">
+                      <img src={blendModal} className="w-full" />
+                    </a>
                   </div>
                 )}
               </Box>

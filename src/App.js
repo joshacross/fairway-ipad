@@ -26,7 +26,8 @@ const modalStyle = {
 };
 
 const pageStyles = {
-  contactCard: "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3",
+  contactCard:
+    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg",
   phoneInput: {
     ".MuiTelInput-Menu": {
       display: "none",
@@ -60,7 +61,7 @@ export default function App() {
               </Toolbar>
             </AppBar>
           ) : (
-            <nav className="flex bg-primary items-center justify-center gap-28 py-1 px-40 mb-6">
+            <nav className="flex bg-primary items-center justify-center gap-28 py-1 px-40">
               <div>
                 <img
                   src={fairwayLogo}
@@ -115,7 +116,7 @@ export default function App() {
               </Button>
             </div>
           </div>
-          <footer className="px-10 flex justify-center items-center bg-primary text-white text-left">
+          <footer className="px-10 py-3 flex justify-center items-center bg-primary text-white text-left">
             {!isMobile ? (
               <>
                 <div className={pageStyles.contactCard}>
@@ -136,7 +137,7 @@ export default function App() {
                       </p>
                     </div>
                     <img
-                      width="100%"
+                      width="90%"
                       src={fairwayLogo}
                       alt="james harper profile "
                     />

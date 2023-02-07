@@ -12,20 +12,6 @@ import Iframe from "react-iframe";
 import { Button, Box, Modal, AppBar, Toolbar, IconButton } from "@mui/material";
 import useDevice from "./utils/hooks/useDevice";
 
-const applyModalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "80vw",
-  maxWidth: "1000px",
-  bgcolor: "secondary.main",
-  border: "2px solid #000",
-  borderRadius: "10px",
-  boxShadow: 24,
-  p: 4,
-};
-
 const modalStyle = {
   position: "absolute",
   top: "50%",

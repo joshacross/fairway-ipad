@@ -25,19 +25,11 @@ const modalStyle = {
   p: 4,
 };
 
-const pageStyles = {
-  contactCard:
-    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg",
-  phoneInput: {
-    ".MuiTelInput-Menu": {
-      display: "none",
-    },
-  },
-};
+const contactCard =
+  "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg";
 
 export default function App() {
   const { isMobile } = useDevice();
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [apply, setApply] = useState(false);
@@ -76,7 +68,6 @@ export default function App() {
               </div>
             </nav>
           )}
-          {/* Body */}
           <div className="flex flex-col items-center justify-between gap-20">
             <div className="text-center mb-12 px-10">
               <h1 className="font-sans text-xl md:text-6xl font-bold">
@@ -119,7 +110,7 @@ export default function App() {
           <footer className="px-10 py-3 flex justify-center items-center bg-primary text-white text-left">
             {!isMobile ? (
               <>
-                <div className={pageStyles.contactCard}>
+                <div className={contactCard}>
                   <div className="w-full">
                     <img src={jamesHarperProfile} alt="james harper profile" />
                   </div>
@@ -143,7 +134,7 @@ export default function App() {
                     />
                   </div>
                 </div>
-                <div className={pageStyles.contactCard}>
+                <div className={contactCard}>
                   <div className="w-full">
                     <img src={deeAnnProfile} alt="dee anne profile " />
                   </div>
@@ -155,13 +146,13 @@ export default function App() {
                     <div className="text-xs">
                       <p>Parks Realty | Lakeside</p>
                       <p>office: 615.824.5920</p>
-                      <p>cell: cell: 615.498.0897</p>
+                      <p>cell: 615.498.0897</p>
                       <p>beccadeeann@parksathome.com</p>
                     </div>
                     <img width="75%" src={parksLogo} alt="parks logo" />
                   </div>
                 </div>
-                <div className={pageStyles.contactCard}>
+                <div className={contactCard}>
                   <div className="w-full">
                     <img src={beccaProfile} alt="becca profile " />
                   </div>
@@ -210,7 +201,11 @@ export default function App() {
                 {apply && (
                   <div>
                     <a href="https://apply.fairwaymc.com/#/milestones?referrerId=james.harper%40fairwaymc.com">
-                      <img src={blendModal} className="w-full" />
+                      <img
+                        src={blendModal}
+                        className="w-full"
+                        alt="Fairway apply now - blend application"
+                      />
                     </a>
                   </div>
                 )}

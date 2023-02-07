@@ -154,7 +154,8 @@ export default function App() {
                     </h6>
                     <div className="text-xs">
                       <p>Parks Realty | Lakeside</p>
-                      <p>office: 615.824.5920 | cell: cell: 615.498.0897</p>
+                      <p>office: 615.824.5920</p>
+                      <p>cell: cell: 615.498.0897</p>
                       <p>beccadeeann@parksathome.com</p>
                     </div>
                     <img width="75%" src={parksLogo} alt="parks logo" />

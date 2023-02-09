@@ -28,7 +28,7 @@ const modalStyle = {
 
 const pageStyles = {
   contactCard:
-    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg hover:border",
+    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg hover:border w-1/3",
   phoneInput: {
     ".MuiTelInput-Menu": {
       display: "none",
@@ -102,6 +102,9 @@ const Edit = () => {
       imageNavLogo1: fairwayLogo,
       imageNavLogo2: parksLogo,
       imageNavLogo3: kcgHomesLogo,
+      imageFooterLogo1: fairwayLogo,
+      imageFooterLogo2: parksLogo,
+      imageFooterLogo3: parksLogo,
       // Images - Profile Photos
       imageLOProfile: jamesHarperProfile,
       imageR1Profile: deeAnnProfile,
@@ -138,6 +141,7 @@ const Edit = () => {
           <nav className="flex bg-primary items-center justify-center gap-28 py-4 px-40">
             <div className="relative">
               <img
+                width="300px"
                 src={values.imageNavLogo1}
                 alt="fairway independent mortgage corporation"
               />
@@ -156,7 +160,11 @@ const Edit = () => {
               </label>
             </div>
             <div className="relative">
-              <img src={values.imageNavLogo2} alt="parks corporate logo" />
+              <img
+                src={values.imageNavLogo2}
+                alt="parks corporate logo"
+                width="300px"
+              />
               <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
                 Edit Logo <BsPencilSquare />
                 <input
@@ -172,7 +180,11 @@ const Edit = () => {
               </label>
             </div>
             <div className="relative">
-              <img src={values.imageNavLogo3} alt="parks corporate logo" />
+              <img
+                src={values.imageNavLogo3}
+                alt="parks corporate logo"
+                width="200px"
+              />
               <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
                 Edit Logo <BsPencilSquare />
                 <input
@@ -244,10 +256,25 @@ const Edit = () => {
             <>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={jamesHarperProfile} alt="james harper profile" />
+                  <img
+                    src={values.imageLOProfile}
+                    alt="james harper profile"
+                    width="250px"
+                  />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" accept="image/*" />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={(e) => {
+                        handleChange({
+                          imageLOProfile: URL.createObjectURL(
+                            e.target.files[0]
+                          ),
+                        });
+                      }}
+                    />
                   </label>
                 </div>
                 <div>
@@ -317,22 +344,44 @@ const Edit = () => {
                   <div className="relative">
                     <img
                       width="90%"
-                      src={fairwayLogo}
+                      src={values.imageFooterLogo1}
                       alt="The Harper Team Logo"
                     />
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo <BsPencilSquare />
-                      <input type="file" className="hidden" accept="image/*" />
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                          handleChange({
+                            imageFooterLogo1: URL.createObjectURL(
+                              e.target.files[0]
+                            ),
+                          });
+                        }}
+                      />
                     </label>
                   </div>
                 </div>
               </div>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={deeAnnProfile} alt="dee anne profile" />
+                  <img src={values.imageR1Profile} alt="dee anne profile" />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" accept="image/*" />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={(e) => {
+                        handleChange({
+                          imageR1Profile: URL.createObjectURL(
+                            e.target.files[0]
+                          ),
+                        });
+                      }}
+                    />
                   </label>
                 </div>
                 <div>
@@ -399,21 +448,47 @@ const Edit = () => {
                     </p>
                   </div>
                   <div className="relative">
-                    <img width="75%" src={parksLogo} alt="parks logo" />
+                    <img
+                      width="75%"
+                      src={values.imageFooterLogo2}
+                      alt="parks logo"
+                    />
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo
                       <BsPencilSquare />
-                      <input type="file" className="hidden" accept="image/*" />
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                          handleChange({
+                            imageFooterLogo2: URL.createObjectURL(
+                              e.target.files[0]
+                            ),
+                          });
+                        }}
+                      />
                     </label>
                   </div>
                 </div>
               </div>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={beccaProfile} alt="becca profile " />
+                  <img src={values.imageR2Profile} alt="becca profile " />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" accept="image/*" />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={(e) => {
+                        handleChange({
+                          imageR2Profile: URL.createObjectURL(
+                            e.target.files[0]
+                          ),
+                        });
+                      }}
+                    />
                   </label>
                 </div>
                 <div>
@@ -479,12 +554,23 @@ const Edit = () => {
                       {values.r1Email}
                     </p>
                   </div>
-                  <div className="relative">
-                    <img width="75%" src={parksLogo} alt="parks logo" />
+                  <div className="relative w-3/4">
+                    <img src={values.imageFooterLogo3} alt="parks logo" />
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo
                       <BsPencilSquare />
-                      <input type="file" className="hidden" accept="image/*" />
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                          handleChange({
+                            imageFooterLogo3: URL.createObjectURL(
+                              e.target.files[0]
+                            ),
+                          });
+                        }}
+                      />
                     </label>
                   </div>
                 </div>

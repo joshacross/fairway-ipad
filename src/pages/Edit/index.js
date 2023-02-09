@@ -9,6 +9,7 @@ import beccaProfile from "../../assets/photos/beccaProfile.png";
 import blendModal from "../../assets/photos/blendModalButton.png";
 import Iframe from "react-iframe";
 import { Button, Box, Modal, AppBar, Toolbar, IconButton } from "@mui/material";
+import { BsPencilSquare } from "react-icons/bs";
 import useDevice from "../../utils/hooks/useDevice";
 
 const modalStyle = {
@@ -27,7 +28,7 @@ const modalStyle = {
 
 const pageStyles = {
   contactCard:
-    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg",
+    "md:flex justify-center items-center px-6 md:px-0 gap-3 my-3 max-w-lg hover:border",
   phoneInput: {
     ".MuiTelInput-Menu": {
       display: "none",
@@ -47,6 +48,24 @@ const initialValues = {
   loMobileNumber: "615.991.1234",
   loOfficeNumber: "615.822.6220",
   loEmail: "james.harper@fairwaymc.com",
+  r1Name: "James Harper",
+  r1Title: "Branch Manager | NMLS 71317",
+  r1TeamName: "The Harper Team | FIMC",
+  r1Company: "Fairway Independent Mortgage",
+  r1AddressLine1: "131 Saundersville Road, Suite 140",
+  r1AddressLine2: "Hendersonville, TN 37075",
+  r1MobileNumber: "615.991.1234",
+  r1OfficeNumber: "615.822.6220",
+  r1Email: "james.harper@fairwaymc.com",
+  r2Name: "James Harper",
+  r2Title: "Branch Manager | NMLS 71317",
+  r2TeamName: "The Harper Team | FIMC",
+  r2Company: "Fairway Independent Mortgage",
+  r2AddressLine1: "131 Saundersville Road, Suite 140",
+  r2AddressLine2: "Hendersonville, TN 37075",
+  r2MobileNumber: "615.991.1234",
+  r2OfficeNumber: "615.822.6220",
+  r2Email: "james.harper@fairwaymc.com",
 };
 
 const Edit = () => {
@@ -150,15 +169,19 @@ const Edit = () => {
           {!isMobile ? (
             <>
               <div className={pageStyles.contactCard}>
-                <div className="w-full">
+                <div className="w-full relative">
                   <img src={jamesHarperProfile} alt="james harper profile" />
+                  <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 transition-all">
+                    Edit Photo
+                    <BsPencilSquare />
+                  </div>
                 </div>
                 <div>
                   <h4
                     contentEditable
                     suppressContentEditableWarning
                     onBlur={(e) => handleChange({ loName: e.target.innerHTML })}
-                    className="text-base font-bold"
+                    className="text-base font-bold hover:border"
                   >
                     {values.loName}
                   </h4>
@@ -168,11 +191,11 @@ const Edit = () => {
                     onBlur={(e) =>
                       handleChange({ loTitle: e.target.innerHTML })
                     }
-                    className="font-bold italic text-xs"
+                    className="font-bold italic text-xs hover:border"
                   >
                     {values.loTitle}
                   </h6>
-                  <div className="text-xs">
+                  <div className="text-xs hover:border">
                     <p
                       contentEditable
                       suppressContentEditableWarning
@@ -182,41 +205,61 @@ const Edit = () => {
                     >
                       {values.loCompany}
                     </p>
+                    <p>
+                      C:{" "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ loMobileNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.loMobileNumber}
+                      </span>
+                    </p>
+                    <p>
+                      O:{" "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ loOfficeNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.loOfficeNumber}
+                      </span>
+                    </p>
                     <p
-                      contentEditable
-                      suppressContentEditableWarning
-                      onBlur={(e) =>
-                        handleChange({ loMobileNumber: e.target.innerHTML })
-                      }
-                    >{`C: ${values.loMobileNumber}`}</p>
-                    <p
-                      contentEditable
-                      suppressContentEditableWarning
-                      onBlur={(e) =>
-                        handleChange({ loOfficeNumber: e.target.innerHTML })
-                      }
-                    >{`O: ${values.loOfficeNumber}`}</p>
-                    <p
+                      className="mb-2"
                       contentEditable
                       suppressContentEditableWarning
                       onBlur={(e) =>
                         handleChange({ loEmail: e.target.innerHTML })
                       }
-                      style={{ marginBottom: "0.5rem" }}
                     >
                       {values.loEmail}
                     </p>
                   </div>
-                  <img
-                    width="90%"
-                    src={fairwayLogo}
-                    alt="james harper profile "
-                  />
+                  <div className="relative">
+                    <img
+                      width="90%"
+                      src={fairwayLogo}
+                      alt="The Harper Team Logo"
+                    />
+                    <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full p-2 opacity-0 hover:opacity-100 transition-all">
+                      Edit Logo
+                      <BsPencilSquare />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className={pageStyles.contactCard}>
-                <div className="w-full">
+                <div className="w-full relative">
                   <img src={deeAnnProfile} alt="dee anne profile " />
+                  <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 transition-all">
+                    Edit Photo
+                    <BsPencilSquare />
+                  </div>
                 </div>
                 <div>
                   <h4 className="text-base font-bold">Dee Ann Couche</h4>

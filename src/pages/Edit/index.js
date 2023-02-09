@@ -37,8 +37,10 @@ const pageStyles = {
 };
 
 const initialValues = {
+  // Title
   title: "Jackson Village Townhomes",
   subtitle: "Hendersonville's Brand New Townhome Community",
+  // Loan Officer Info below
   loName: "James Harper",
   loTitle: "Branch Manager | NMLS 71317",
   loTeamName: "The Harper Team | FIMC",
@@ -48,24 +50,26 @@ const initialValues = {
   loMobileNumber: "615.991.1234",
   loOfficeNumber: "615.822.6220",
   loEmail: "james.harper@fairwaymc.com",
-  r1Name: "James Harper",
-  r1Title: "Branch Manager | NMLS 71317",
-  r1TeamName: "The Harper Team | FIMC",
-  r1Company: "Fairway Independent Mortgage",
-  r1AddressLine1: "131 Saundersville Road, Suite 140",
+  // Realtor 1 Below
+  r1Name: "Dee Ann Couche",
+  r1Title: "REALTOR® | MLS 332841",
+  r1TeamName: "",
+  r1Company: "Parks Realty | Lakeside",
+  r1AddressLine1: "530 Main Street",
   r1AddressLine2: "Hendersonville, TN 37075",
-  r1MobileNumber: "615.991.1234",
-  r1OfficeNumber: "615.822.6220",
-  r1Email: "james.harper@fairwaymc.com",
-  r2Name: "James Harper",
-  r2Title: "Branch Manager | NMLS 71317",
-  r2TeamName: "The Harper Team | FIMC",
-  r2Company: "Fairway Independent Mortgage",
-  r2AddressLine1: "131 Saundersville Road, Suite 140",
+  r1MobileNumber: "615.498.0897",
+  r1OfficeNumber: "615.824.5920",
+  r1Email: "beccadeeann@parksathome.com",
+  // Realtor 2 Below
+  r2Name: "Becca Pendergrast",
+  r2Title: "BROKER | MLS 285951",
+  r2TeamName: "",
+  r2Company: "Parks Realty | Lakeside",
+  r2AddressLine1: "530 Main Street",
   r2AddressLine2: "Hendersonville, TN 37075",
-  r2MobileNumber: "615.991.1234",
-  r2OfficeNumber: "615.822.6220",
-  r2Email: "james.harper@fairwaymc.com",
+  r2MobileNumber: "615.973.9291",
+  r2OfficeNumber: "615.824.5920",
+  r2Email: "beccadeeann@parksathome.com",
 };
 
 const Edit = () => {
@@ -85,6 +89,12 @@ const Edit = () => {
 
   return (
     <>
+      <div className="bg-orange flex justify-end items-center gap-3 pr-3 py-1">
+        Ready to Publish?
+        <button className="bg-secondary p-2 rounded text-white shadow-md hover:bg-white hover:text-secondary hover:border-1 text-xs">
+          Publish
+        </button>
+      </div>
       <main className="flex flex-col justify-between m-auto text-center bg-home-page bg-no-repeat bg-top bg-cover h-screen">
         {isMobile ? (
           <AppBar position="static" className="mb-6">
@@ -122,7 +132,7 @@ const Edit = () => {
               contentEditable
               suppressContentEditableWarning
               onBlur={(e) => handleChange({ title: e.target.innerHTML })}
-              className="font-sans text-xl md:text-6xl font-bold"
+              className="font-sans text-xl md:text-6xl font-bold hover:border border-white"
             >
               {values?.title}
             </h1>
@@ -130,7 +140,7 @@ const Edit = () => {
               contentEditable
               suppressContentEditableWarning
               onBlur={(e) => handleChange({ subtitle: e.target.innerHTML })}
-              className="font-sans text-lg md:text-3xl md:font-bold"
+              className="font-sans text-lg md:text-3xl md:font-bold hover:border border-white"
             >
               {values?.subtitle}
             </h2>
@@ -171,10 +181,10 @@ const Edit = () => {
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
                   <img src={jamesHarperProfile} alt="james harper profile" />
-                  <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 transition-all">
-                    Edit Photo
-                    <BsPencilSquare />
-                  </div>
+                  <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                    Edit Photo <BsPencilSquare />
+                    <input type="file" className="hidden" />
+                  </label>
                 </div>
                 <div>
                   <h4
@@ -246,50 +256,173 @@ const Edit = () => {
                       src={fairwayLogo}
                       alt="The Harper Team Logo"
                     />
-                    <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full p-2 opacity-0 hover:opacity-100 transition-all">
-                      Edit Logo
-                      <BsPencilSquare />
-                    </div>
+                    <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                      Edit Logo <BsPencilSquare />
+                      <input type="file" className="hidden" />
+                    </label>
                   </div>
                 </div>
               </div>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={deeAnnProfile} alt="dee anne profile " />
-                  <div className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 transition-all">
-                    Edit Photo
-                    <BsPencilSquare />
-                  </div>
+                  <img src={deeAnnProfile} alt="dee anne profile" />
+                  <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                    Edit Photo <BsPencilSquare />
+                    <input type="file" className="hidden" />
+                  </label>
                 </div>
                 <div>
-                  <h4 className="text-base font-bold">Dee Ann Couche</h4>
-                  <h6 className="text-xs font-bold italic">
+                  <h4
+                    contentEditable
+                    suppressContentEditableWarning
+                    onBlur={(e) => handleChange({ r1Name: e.target.innerHTML })}
+                    className="text-base font-bold hover:border"
+                  >
+                    {values.r1Name}
+                  </h4>
+                  <h6
+                    contentEditable
+                    suppressContentEditableWarning
+                    onBlur={(e) =>
+                      handleChange({ r1Title: e.target.innerHTML })
+                    }
+                    className="text-xs font-bold italic hover:border"
+                  >
                     {"REALTOR® | MLS 332841"}
                   </h6>
-                  <div className="text-xs">
-                    <p>Parks Realty | Lakeside</p>
-                    <p>office: 615.824.5920 | cell: cell: 615.498.0897</p>
-                    <p>beccadeeann@parksathome.com</p>
+                  <div className="text-xs hover:border">
+                    <p
+                      contentEditable
+                      suppressContentEditableWarning
+                      onBlur={(e) =>
+                        handleChange({ r1Company: e.target.innerHTML })
+                      }
+                    >
+                      {values.r1Company}
+                    </p>
+                    <p>
+                      {"C: "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ r1MobileNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.r1MobileNumber}
+                      </span>
+                    </p>
+                    <p>
+                      {"O: "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ r1OfficeNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.r1OfficeNumber}
+                      </span>
+                    </p>
+                    <p
+                      contentEditable
+                      suppressContentEditableWarning
+                      onBlur={(e) =>
+                        handleChange({ r1Email: e.target.innerHTML })
+                      }
+                    >
+                      {values.r1Email}
+                    </p>
                   </div>
-                  <img width="75%" src={parksLogo} alt="parks logo" />
+                  <div className="relative">
+                    <img width="75%" src={parksLogo} alt="parks logo" />
+                    <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                      Edit Logo
+                      <BsPencilSquare />
+                      <input type="file" className="hidden" />
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className={pageStyles.contactCard}>
-                <div className="w-full">
+                <div className="w-full relative">
                   <img src={beccaProfile} alt="becca profile " />
+                  <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                    Edit Photo <BsPencilSquare />
+                    <input type="file" className="hidden" />
+                  </label>
                 </div>
-                <div className="contactInfo">
-                  <h4 className="text-base font-bold">Becca Pendergrast</h4>
-                  <h6 className="text-xs font-bold italic">
-                    BROKER | MLS 285951
+                <div>
+                  <h4
+                    contentEditable
+                    suppressContentEditableWarning
+                    onBlur={(e) => handleChange({ r2Name: e.target.innerHTML })}
+                    className="text-base font-bold hover:border"
+                  >
+                    {values.r2Name}
+                  </h4>
+                  <h6
+                    contentEditable
+                    suppressContentEditableWarning
+                    onBlur={(e) =>
+                      handleChange({ r2Title: e.target.innerHTML })
+                    }
+                    className="text-xs font-bold italic hover:border"
+                  >
+                    {"REALTOR® | MLS 332841"}
                   </h6>
-                  <div className="text-xs">
-                    <p>Parks Realty | Lakeside</p>
-                    <p>M: 615.973.9291</p>
-                    <p>O: 615.824.5920</p>
-                    <p>beccadeeann@parksathome.com</p>
+                  <div className="text-xs hover:border">
+                    <p
+                      contentEditable
+                      suppressContentEditableWarning
+                      onBlur={(e) =>
+                        handleChange({ r2Company: e.target.innerHTML })
+                      }
+                    >
+                      {values.r2Company}
+                    </p>
+                    <p>
+                      {"C: "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ r2MobileNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.r2MobileNumber}
+                      </span>
+                    </p>
+                    <p>
+                      {"O: "}
+                      <span
+                        contentEditable
+                        suppressContentEditableWarning
+                        onBlur={(e) =>
+                          handleChange({ r2OfficeNumber: e.target.innerHTML })
+                        }
+                      >
+                        {values.r2OfficeNumber}
+                      </span>
+                    </p>
+                    <p
+                      contentEditable
+                      suppressContentEditableWarning
+                      onBlur={(e) =>
+                        handleChange({ r2Email: e.target.innerHTML })
+                      }
+                    >
+                      {values.r1Email}
+                    </p>
                   </div>
-                  <img width="75%" src={parksLogo} alt="parks logo" />
+                  <div className="relative">
+                    <img width="75%" src={parksLogo} alt="parks logo" />
+                    <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
+                      Edit Logo
+                      <BsPencilSquare />
+                      <input type="file" className="hidden" />
+                    </label>
+                  </div>
                 </div>
               </div>
             </>

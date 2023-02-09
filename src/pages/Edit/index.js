@@ -93,18 +93,6 @@ const Edit = () => {
     setValues(newValues);
   };
 
-  const handleImageChange = (obj) => {
-    const newObj = obj[0];
-    console.log(newObj);
-    console.log(obj);
-    // const newObjectURL = URL.createObjectURL(obj);
-    // console.log("newObj", newObjectURL);
-
-    // const newValues = { ...values, ...obj };
-
-    // setValues(newValues);
-  };
-
   console.log("values", values);
   console.log("fairway logo", values?.imageNavLogo1);
   console.log("fairwayLogo", fairwayLogo);
@@ -147,7 +135,7 @@ const Edit = () => {
             </Toolbar>
           </AppBar>
         ) : (
-          <nav className="flex bg-primary items-center justify-center gap-28 py-1 px-40">
+          <nav className="flex bg-primary items-center justify-center gap-28 py-4 px-40">
             <div className="relative">
               <img
                 src={values.imageNavLogo1}
@@ -160,23 +148,43 @@ const Edit = () => {
                   className="hidden"
                   accept="image/*"
                   onChange={(e) => {
-                    handleImageChange({ imageNavLogo1: e.target.files[0] });
+                    handleChange({
+                      imageNavLogo1: URL.createObjectURL(e.target.files[0]),
+                    });
                   }}
                 />
               </label>
             </div>
             <div className="relative">
-              <img src={parksLogo} alt="parks corporate logo" />
+              <img src={values.imageNavLogo2} alt="parks corporate logo" />
               <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
                 Edit Logo <BsPencilSquare />
-                <input type="file" className="hidden" accept="image/*" />
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={(e) => {
+                    handleChange({
+                      imageNavLogo2: URL.createObjectURL(e.target.files[0]),
+                    });
+                  }}
+                />
               </label>
             </div>
             <div className="relative">
-              <img src={kcgHomesLogo} alt="parks corporate logo" />
+              <img src={values.imageNavLogo3} alt="parks corporate logo" />
               <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
                 Edit Logo <BsPencilSquare />
-                <input type="file" className="hidden" accept="image/*" />
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={(e) => {
+                    handleChange({
+                      imageNavLogo3: URL.createObjectURL(e.target.files[0]),
+                    });
+                  }}
+                />
               </label>
             </div>
           </nav>

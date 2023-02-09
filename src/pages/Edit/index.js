@@ -93,10 +93,6 @@ const Edit = () => {
     setValues(newValues);
   };
 
-  console.log("values", values);
-  console.log("fairway logo", values?.imageNavLogo1);
-  console.log("fairwayLogo", fairwayLogo);
-
   useEffect(() => {
     const imagePlaceholders = {
       imageNavLogo1: fairwayLogo,
@@ -251,7 +247,7 @@ const Edit = () => {
             </Button>
           </div>
         </div>
-        <footer className="px-10 py-3 flex justify-center items-center bg-primary text-white text-left">
+        <footer className="px-10 py-2 flex justify-center items-center bg-primary text-white text-left">
           {!isMobile ? (
             <>
               <div className={pageStyles.contactCard}>
@@ -259,7 +255,7 @@ const Edit = () => {
                   <img
                     src={values.imageLOProfile}
                     alt="james harper profile"
-                    width="250px"
+                    width="200px"
                   />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
@@ -343,7 +339,7 @@ const Edit = () => {
                   </div>
                   <div className="relative">
                     <img
-                      width="90%"
+                      width="200px"
                       src={values.imageFooterLogo1}
                       alt="The Harper Team Logo"
                     />
@@ -367,7 +363,11 @@ const Edit = () => {
               </div>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={values.imageR1Profile} alt="dee anne profile" />
+                  <img
+                    width="200px"
+                    src={values.imageR1Profile}
+                    alt="dee anne profile"
+                  />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
                     <input
@@ -449,7 +449,7 @@ const Edit = () => {
                   </div>
                   <div className="relative">
                     <img
-                      width="75%"
+                      width="200px"
                       src={values.imageFooterLogo2}
                       alt="parks logo"
                     />
@@ -474,7 +474,11 @@ const Edit = () => {
               </div>
               <div className={pageStyles.contactCard}>
                 <div className="w-full relative">
-                  <img src={values.imageR2Profile} alt="becca profile " />
+                  <img
+                    width="200px"
+                    src={values.imageR2Profile}
+                    alt="becca profile "
+                  />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
                     <input
@@ -554,8 +558,12 @@ const Edit = () => {
                       {values.r1Email}
                     </p>
                   </div>
-                  <div className="relative w-3/4">
-                    <img src={values.imageFooterLogo3} alt="parks logo" />
+                  <div className="relative">
+                    <img
+                      width="200px"
+                      src={values.imageFooterLogo3}
+                      alt="parks logo"
+                    />
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo
                       <BsPencilSquare />

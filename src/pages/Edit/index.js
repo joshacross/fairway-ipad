@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
 import parksLogo from "../../assets/logos/parksLogo.png";
@@ -37,6 +37,14 @@ const pageStyles = {
 };
 
 const initialValues = {
+  // Images - Logos
+  imageNavLogo1: "",
+  imageNavLogo2: "",
+  imageNavLogo3: "",
+  // Images - Profile Photos
+  imageLOProfile: "",
+  imageR1Profile: "",
+  imageR2Profile: "",
   // Title
   title: "Jackson Village Townhomes",
   subtitle: "Hendersonville's Brand New Townhome Community",
@@ -85,7 +93,36 @@ const Edit = () => {
     setValues(newValues);
   };
 
+  const handleImageChange = (obj) => {
+    const newObj = obj[0];
+    console.log(newObj);
+    console.log(obj);
+    // const newObjectURL = URL.createObjectURL(obj);
+    // console.log("newObj", newObjectURL);
+
+    // const newValues = { ...values, ...obj };
+
+    // setValues(newValues);
+  };
+
   console.log("values", values);
+  console.log("fairway logo", values?.imageNavLogo1);
+  console.log("fairwayLogo", fairwayLogo);
+
+  useEffect(() => {
+    const imagePlaceholders = {
+      imageNavLogo1: fairwayLogo,
+      imageNavLogo2: parksLogo,
+      imageNavLogo3: kcgHomesLogo,
+      // Images - Profile Photos
+      imageLOProfile: jamesHarperProfile,
+      imageR1Profile: deeAnnProfile,
+      imageR2Profile: beccaProfile,
+    };
+
+    handleChange({ ...imagePlaceholders });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -111,17 +148,36 @@ const Edit = () => {
           </AppBar>
         ) : (
           <nav className="flex bg-primary items-center justify-center gap-28 py-1 px-40">
-            <div>
+            <div className="relative">
               <img
-                src={fairwayLogo}
+                src={values.imageNavLogo1}
                 alt="fairway independent mortgage corporation"
               />
+              <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
+                Edit Logo <BsPencilSquare />
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={(e) => {
+                    handleImageChange({ imageNavLogo1: e.target.files[0] });
+                  }}
+                />
+              </label>
             </div>
-            <div>
+            <div className="relative">
               <img src={parksLogo} alt="parks corporate logo" />
+              <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
+                Edit Logo <BsPencilSquare />
+                <input type="file" className="hidden" accept="image/*" />
+              </label>
             </div>
-            <div>
+            <div className="relative">
               <img src={kcgHomesLogo} alt="parks corporate logo" />
+              <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all text-white">
+                Edit Logo <BsPencilSquare />
+                <input type="file" className="hidden" accept="image/*" />
+              </label>
             </div>
           </nav>
         )}
@@ -183,7 +239,7 @@ const Edit = () => {
                   <img src={jamesHarperProfile} alt="james harper profile" />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" />
+                    <input type="file" className="hidden" accept="image/*" />
                   </label>
                 </div>
                 <div>
@@ -258,7 +314,7 @@ const Edit = () => {
                     />
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo <BsPencilSquare />
-                      <input type="file" className="hidden" />
+                      <input type="file" className="hidden" accept="image/*" />
                     </label>
                   </div>
                 </div>
@@ -268,7 +324,7 @@ const Edit = () => {
                   <img src={deeAnnProfile} alt="dee anne profile" />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" />
+                    <input type="file" className="hidden" accept="image/*" />
                   </label>
                 </div>
                 <div>
@@ -339,7 +395,7 @@ const Edit = () => {
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo
                       <BsPencilSquare />
-                      <input type="file" className="hidden" />
+                      <input type="file" className="hidden" accept="image/*" />
                     </label>
                   </div>
                 </div>
@@ -349,7 +405,7 @@ const Edit = () => {
                   <img src={beccaProfile} alt="becca profile " />
                   <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                     Edit Photo <BsPencilSquare />
-                    <input type="file" className="hidden" />
+                    <input type="file" className="hidden" accept="image/*" />
                   </label>
                 </div>
                 <div>
@@ -420,7 +476,7 @@ const Edit = () => {
                     <label className="flex justify-center items-center gap-2 absolute bottom-1 bg-secondary bg-opacity-70 w-full h-full p-2 opacity-0 hover:opacity-100 hover:cursor-pointer transition-all">
                       Edit Logo
                       <BsPencilSquare />
-                      <input type="file" className="hidden" />
+                      <input type="file" className="hidden" accept="image/*" />
                     </label>
                   </div>
                 </div>

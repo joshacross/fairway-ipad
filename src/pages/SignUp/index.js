@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -25,7 +25,6 @@ import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import fairwayColorLogo from "../../assets/logos/fairwayColorLogo.png";
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
 
@@ -67,7 +66,7 @@ function SignIn() {
 
       await setDoc(doc(db, "users", user.uid), formDataCopy);
 
-      navigate("/edit");
+      navigate("/profile");
     } catch (error) {
       console.log(error);
     }

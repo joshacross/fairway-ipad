@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import * as Yup from "yup";
@@ -21,13 +21,13 @@ import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import fairwayColorLogo from "../../assets/logos/fairwayColorLogo.png";
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required("Required"),
-  password: Yup.string().required("Required"),
+  email: Yup.string().email().min(3).required("Required"),
+  password: Yup.string().min(6).required("Required"),
 });
 
 function SignIn() {
@@ -36,6 +36,7 @@ function SignIn() {
 
   const handleSubmit = async (values) => {
     try {
+      console.log("run");
       const { email, password } = values;
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(
@@ -44,11 +45,14 @@ function SignIn() {
         password
       );
 
+      console.log(userCredential);
+
       if (userCredential.user) {
         navigate("/profile");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Incorrect login credentials. Please try again");
     }
   };
 
@@ -82,7 +86,7 @@ function SignIn() {
               <Grid container spacing={2}>
                 <Grid item container>
                   <Formik
-                    validateOnBlur={true}
+                    validateOnBlur={false}
                     validateOnChange={false}
                     initialValues={{
                       email: "",
@@ -94,7 +98,8 @@ function SignIn() {
                     {({
                       values,
                       errors,
-                      handleChange,
+                      setFieldValue,
+                      setFieldError,
                       handleSubmit,
                       isValid,
                     }) => {
@@ -108,7 +113,10 @@ function SignIn() {
                             label="Email Address"
                             value={values.email}
                             error={errors.email}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                              setFieldValue("email", e.target.value);
+                              setFieldError("email", undefined);
+                            }}
                             name="email"
                             InputProps={{
                               startAdornment: (
@@ -123,8 +131,11 @@ function SignIn() {
                             label="Password"
                             name="password"
                             value={values.password}
-                            error={errors.password}
-                            onChange={handleChange}
+                            error={Boolean(errors.password)}
+                            onChange={(e) => {
+                              setFieldValue("password", e.target.value);
+                              setFieldError("password", undefined);
+                            }}
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment

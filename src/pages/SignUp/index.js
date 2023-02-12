@@ -10,7 +10,6 @@ import {
   TextField,
   Button,
   InputAdornment,
-  Divider,
 } from "@mui/material";
 import { CgProfile } from "react-icons/cg";
 import {
@@ -27,19 +26,21 @@ const handleSubmit = (values) => {
 };
 
 const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("Required"),
+  lastName: Yup.string().required("Required"),
   email: Yup.string().email().required("Required"),
-  password: Yup.string().required("Required"),
+  password: Yup.string()
+    .min(6)
+    .max(32)
+    .required("Password must be at least 6 characters"),
 });
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <div className=" bg-tertiary h-screen flex flex-col md:flex-row justify-center items-center gap-6">
-        <div
-          className="flex flex-col items-center justify-center
-		gap-3 text-white text-center w-1/2"
-        >
+    <div className="flex flex-col justify-between h-screen bg-tertiary">
+      <div className="flex justify-between items-center h-screen">
+        <div className="flex flex-col items-center gap-3 text-white text-center w-1/2">
           <img
             className="w-40 md:w-80"
             src={fairwayLogo}
@@ -56,17 +57,19 @@ function SignIn() {
         <Container maxWidth="sm">
           <Card variant="elevation">
             <CardHeader
-              title="Welcome Back!"
-              subheader="Please sign in below"
+              title="Welcome!"
+              subheader="Please sign up using the form below"
               action={<CgProfile className="text-primary" fontSize={40} />}
             />
             <CardContent>
               <Grid container spacing={2}>
                 <Grid item container>
                   <Formik
-                    validateOnBlur={true}
+                    validateOnBlur={false}
                     validateOnChange={false}
                     initialValues={{
+                      firstName: "",
+                      lastName: "",
                       email: "",
                       password: "",
                     }}
@@ -76,7 +79,8 @@ function SignIn() {
                     {({
                       values,
                       errors,
-                      handleChange,
+                      setFieldValue,
+                      setFieldError,
                       handleSubmit,
                       isValid,
                     }) => {
@@ -85,12 +89,41 @@ function SignIn() {
                           onSubmit={handleSubmit}
                           className="flex flex-col w-full justify-between gap-4"
                         >
+                          <div className="flex justify-between gap-4">
+                            <TextField
+                              fullWidth
+                              type="text"
+                              label="First Name"
+                              value={values.firstName}
+                              error={errors.firstName}
+                              onChange={(e) => {
+                                setFieldValue("firstName", e.target.value);
+                                setFieldError("firstName", undefined);
+                              }}
+                              name="firstName"
+                            />
+                            <TextField
+                              fullWidth
+                              type="text"
+                              label="Last Name"
+                              value={values.lastName}
+                              error={errors.lastName}
+                              onChange={(e) => {
+                                setFieldValue("lastName", e.target.value);
+                                setFieldError("lastName", undefined);
+                              }}
+                              name="lastName"
+                            />
+                          </div>
                           <TextField
                             type="email"
                             label="Email Address"
                             value={values.email}
                             error={errors.email}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                              setFieldValue("email", e.target.value);
+                              setFieldError("email", undefined);
+                            }}
                             name="email"
                             InputProps={{
                               startAdornment: (
@@ -106,7 +139,11 @@ function SignIn() {
                             name="password"
                             value={values.password}
                             error={errors.password}
-                            onChange={handleChange}
+                            helperText={errors.password}
+                            onChange={(e) => {
+                              setFieldValue("password", e.target.value);
+                              setFieldError("password", undefined);
+                            }}
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment
@@ -133,20 +170,12 @@ function SignIn() {
                             >
                               Sign In
                             </Button>
-                            <Link to="/forgot-password">Forgot Password?</Link>
+                            <Link to="/sign-in">Have an account? Sign In</Link>
                           </div>
                         </form>
                       );
                     }}
                   </Formik>
-                </Grid>
-                <Grid item xs={12}>
-                  <Divider />
-                </Grid>
-                <Grid item container xs={12} justifyContent="center">
-                  <Link to="/sign-up">
-                    <Button variant="contained">Create A New Account</Button>
-                  </Link>
                 </Grid>
               </Grid>
             </CardContent>

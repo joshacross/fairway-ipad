@@ -34,24 +34,23 @@ const validationSchema = Yup.object().shape({
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <div className=" bg-tertiary h-screen flex flex-col md:flex-row justify-center items-center gap-6">
-        <div
-          className="flex flex-col items-center justify-center
-		gap-3 text-white text-center w-1/2"
-        >
+    <div className="flex flex-col justify-between h-screen bg-tertiary">
+      <div className="flex justify-between items-center h-screen">
+        <div className="flex flex-col items-center gap-3 text-white text-center w-1/2">
           <img
             className="w-40 md:w-80"
             src={fairwayLogo}
             alt="Fairway Independent Mortgage Corporation Logo"
           />
-          <h2 className="text-xl: md:text-4xl font-sans font-bold">
-            KIOSK GENERATOR
-          </h2>
-          <h3 className="text-lg md:text-3xl">
-            The #1 Loan Officer{" "}
-            <span className="block">Kiosk Template Generator</span>
-          </h3>
+          <div>
+            <h2 className="text-xl: md:text-4xl font-sans font-bold">
+              KIOSK GENERATOR
+            </h2>
+            <h3 className="text-lg md:text-3xl">
+              The #1 Loan Officer{" "}
+              <span className="block">Kiosk Template Generator</span>
+            </h3>
+          </div>
         </div>
         <Container maxWidth="sm">
           <Card variant="elevation">

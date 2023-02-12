@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import * as Yup from "yup";
 import { Formik } from "formik";
 import {
@@ -22,17 +25,33 @@ import { Link } from "react-router-dom";
 import fairwayColorLogo from "../../assets/logos/fairwayColorLogo.png";
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
 
-const handleSubmit = async (values) => {
-  console.log(values);
-};
-
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required("Required"),
   password: Yup.string().required("Required"),
 });
 
 function SignIn() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (values) => {
+    try {
+      const { email, password } = values;
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-between h-screen bg-tertiary">
       <div className="flex justify-between items-center h-screen">

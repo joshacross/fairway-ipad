@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import fairwayColorLogo from "../../assets/logos/fairwayColorLogo.png";
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
 
-const handleSubmit = (values) => {
+const handleSubmit = async (values) => {
   console.log(values);
 };
 
@@ -132,6 +132,7 @@ function SignIn() {
                             >
                               Sign In
                             </Button>
+
                             <Link to="/forgot-password">Forgot Password?</Link>
                           </div>
                         </form>

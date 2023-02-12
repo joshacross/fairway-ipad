@@ -1,4 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "src/firebase.config";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import {
@@ -21,10 +29,6 @@ import { Link } from "react-router-dom";
 import fairwayColorLogo from "../../assets/logos/fairwayColorLogo.png";
 import fairwayLogo from "../../assets/logos/fairwayLogo.png";
 
-const handleSubmit = (values) => {
-  console.log(values);
-};
-
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("Required"),
   lastName: Yup.string().required("Required"),
@@ -36,7 +40,39 @@ const validationSchema = Yup.object().shape({
 });
 
 function SignIn() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (values) => {
+    try {
+      const { firstName, email, password } = values;
+      const auth = getAuth();
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(auth.currentUser, {
+        displayName: firstName,
+      });
+
+      const formDataCopy = { ...values };
+      delete formDataCopy.password;
+      formDataCopy.createdAt = serverTimestamp();
+      formDataCopy.updatedAt = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+      navigate("/edit");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-between h-screen bg-tertiary">
       <div className="flex justify-between items-center h-screen">
@@ -168,7 +204,7 @@ function SignIn() {
                               variant="contained"
                               fullWidth
                             >
-                              Sign In
+                              Sign Up
                             </Button>
                             <Link to="/sign-in">Have an account? Sign In</Link>
                           </div>
